@@ -10,7 +10,7 @@ function getConnection() {
 	if (!$con) {
 	    die('Could not connect: ' . mysqli_error($con));
 	}
-	echo $con;
+	return $con;
 }
 
 ?>

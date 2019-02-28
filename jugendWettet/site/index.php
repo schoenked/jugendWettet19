@@ -8,24 +8,30 @@
 <body class="w3-grey">
 <header>
 </header>
-<div class="w3-content"
-	<form>
-		<div class="w3-bar w3-light-green">
-			<div class="w3-dropdown-hover">
+<div class="w3-content">
+	<div class="w3-bar w3-light-green">
+		<form>
+			<span class="w3-dropdown-hover">
 				<button class="w3-button w3-hover-dark-grey">Abstimmungsergebnis</button>
-					<div class="w3-dropdown-content w3-bar-block w3-card-4">
+					<span class="w3-dropdown-content w3-bar-block w3-card-4">
 						<?php 
-
 							include 'abstimmungsergebnisse.php' ;
 						?>
-						<a href="#" class="w3-bar-item w3-button">Link 1</a>
-						<a href="#" class="w3-bar-item w3-button">Link 2</a>
-						<a href="#" class="w3-bar-item w3-button">Link 3</a>
-				    </div>
-			    </div>
-			</div>
-		</div>
-	</form>
+					</span>
+			    </span>
+			</span>
+			<button class="w3-button w3-hover-dark-grey">Team eintragen</button>
+			<span class="w3-dropdown-hover">
+				<button class="w3-button w3-hover-dark-grey">Abstimmung starten</button>
+					<span class="w3-dropdown-content w3-bar-block w3-card-4">
+						<?php 
+							include 'abstimmungsstart.php' ;
+						?>
+					</span>
+			    </span>
+			</span>
+		</form>
+	</div>
 <footer>
 </footer>
 </body>
