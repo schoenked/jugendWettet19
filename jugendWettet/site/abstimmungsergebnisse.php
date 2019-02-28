@@ -1,6 +1,6 @@
 <?php
 	//<a href="#" class="w3-bar-item w3-button">Link 1</a>
-	require 'connectDB.php';
+	require_once 'connectDB.php';
 	$sql = 'SELECT Name FROM Spiel';
 	$res = query($sql);
 
