@@ -6,6 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="css/w3.css">
 	<title>Jugend Spiel 2019, Team eintragen</title>
+	<script src="lib/Chart.js" />
 </head>
 <body class="w3-dark-grey">
 <header>
@@ -14,7 +15,18 @@
 
 	<div class="w3-bar w3-white w3-round-xlarge w3-padding ">
 	<h1 class="w3-border-bottom w3-border-red">Abstimmung starten</h1>
+	
+	<canvasid="myChart" width="800" height="500"></canvas>
+	<script>
+		var ctx = document.getElementById("myChart");
+	    var myChart = new Chart(ctx, 
+			{
+				data: {
+				labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+				datasets: [{
+			});
 
+	</script>
 <?php
 
 	require_once 'connectDB.php';

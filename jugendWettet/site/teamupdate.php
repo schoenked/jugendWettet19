@@ -33,9 +33,9 @@
 					"WHERE ShortID='$teamID'";
 			queryWithConnection($conn,$sql);
 			if($conn->affected_rows <= 0) {
-				echo '<span class="w3-red w3-padding">Fehler aufgetreten</span>';
+				echo '<span class="w3-animate-left w3-red w3-padding">Fehler aufgetreten</span>';
 			} else {
-				echo '<span class="w3-green w3-padding">Das Team wurde eingetragen</span>';
+				echo '<span class="w3-animate-left w3-green w3-padding">Das Team wurde eingetragen</span>';
 			}			
 		}
 	?>
