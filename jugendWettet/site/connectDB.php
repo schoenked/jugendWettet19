@@ -1,7 +1,11 @@
 <?php
 
 function query($stmnt) {
-	return mysqli_query(getConnection(), $stmnt);
+	return queryWithConnection(getConnection(), $stmnt);
+}
+
+function queryWithConnection($conn, $stmnt) {
+	return mysqli_query($conn, $stmnt);
 }
 
 function getConnection() {

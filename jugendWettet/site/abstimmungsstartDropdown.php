@@ -5,7 +5,7 @@
 	$res = query($sql);
 
 	while($row = mysqli_fetch_array($res)) {
-		echo '<a href="#" class="w3-bar-item w3-button w3-white w3-hover-black">' . $row['Name']. '</a>';
+		echo '<a href="abstimmungsstart.php" class="w3-bar-item w3-button w3-white w3-hover-black">' . $row['Name']. '</a>';
 	}
 
 ?>
