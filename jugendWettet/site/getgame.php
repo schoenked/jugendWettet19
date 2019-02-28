@@ -21,7 +21,7 @@ th {text-align: left;}
 <?php
 $q = intval($_GET['q']);
 
-$con = mysqli_connect('localhost','root','','jugendspiel');
+$con = mysqli_connect('daniel-server.ddns.net','jugendWettet','jugendWettet','jugendWettet');
 if (!$con) {
     die('Could not connect: ' . mysqli_error($con));
 }
