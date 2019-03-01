@@ -12,6 +12,9 @@
 <div class="w3-display-middle">
 
 	<div class="w3-bar w3-white w3-round-xlarge w3-padding ">
+
+		<h1>Arbeitsamt</h1>
+
 			<span class="w3-left">
 				<a class="w3-button w3-hover-dark-grey w3-border w3-border-green w3 w3-round-large" href=teamupdate.php>Team eintragen</a>
 			</span>
@@ -29,7 +32,7 @@
 				<button class="w3-button w3-hover-dark-grey w3-border w3-border-blue w3-round-large">Abstimmungsergebnis</button>
 					<span class="w3-dropdown-content w3-bar-block w3-card-4">
 						<?php 
-							include 'abstimmungsergebnisse.php' ;
+							include 'abstimmungsergebnisseDropdown.php' ;
 						?>
 					</span>
 			    </span>
