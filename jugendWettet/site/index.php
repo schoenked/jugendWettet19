@@ -38,14 +38,8 @@
 			    </span>
 			</span>
 			
-			<span class="w3-dropdown-hover">
-				<button class="w3-button w3-hover-dark-grey w3-border w3-border-yellow w3-round-large">TOP 5 Teams</button>
-					<span class="w3-dropdown-content w3-bar-block w3-card-4">
-						<?php 
-							include 'top5.php' ;
-						?>
-					</span>
-			    </span>
+			<span class="w3-left">
+				<a href="top5.php" class="w3-button w3-hover-dark-grey w3-border w3-border-yellow w3-round-large">TOP 5 Teams</a>
 			</span>
 	</div>
 <footer>

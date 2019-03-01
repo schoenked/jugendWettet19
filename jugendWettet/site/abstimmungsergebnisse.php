@@ -17,9 +17,6 @@
 	<div class="w3-bar w3-white w3-round-xlarge w3-padding ">
 	<h1 class="w3-border-bottom w3-border-blue">Abstimmungsergebnis</h1>
 	
-	<canvas id="myChart" width="800" height="400"></canvas>
-
-	
 <?php
 
 	require_once 'connectDB.php';
@@ -27,32 +24,36 @@
 	$spielID = $conn->real_escape_string($_GET["spielID"]);
 	$sql = "SELECT Name, 
 				Name1, 
-				(SELECT Count() 
+				(SELECT Count(Auswahl) 
 				 FROM Abstimmung 
 				 WHERE SpielID='$spielID' 
 					AND Auswahl=1) AS Votes1,
 				Name2, 
-				(SELECT Count() 
+				(SELECT Count(Auswahl) 
 				 FROM Abstimmung 
 				 WHERE SpielID='$spielID' 
-					AND Auswahl=1) AS Votes2,
+					AND Auswahl=2) AS Votes2,
 				Name3, 
-				(SELECT Count() 
+				(SELECT Count(Auswahl) 
 				 FROM Abstimmung 
 				 WHERE SpielID='$spielID' 
-					AND Auswahl=1) AS Votes3,
+					AND Auswahl=3) AS Votes3,
 				Name4,
-				(SELECT Count() 
+				(SELECT Count(Auswahl) 
 				 FROM Abstimmung 
 				 WHERE SpielID='$spielID' 
-					AND Auswahl=1) AS Votes4
+					AND Auswahl=4) AS Votes4
 			FROM Spiel
 			WHERE Id='$spielID'";
 	$res = queryWithConnection($conn,$sql);
-	
+	$row = mysqli_fetch_array($res);
+	if($row) {
+	echo "<h2>".$row['Name']."</h2>";
+	}
 	
 ?>
-
+	<canvas id="myChart" width="800" height="400"></canvas>
+		
 	<script>
 		var ctx = document.getElementById("myChart");
 	    var myChart = new Chart(ctx, 
@@ -60,13 +61,14 @@
 			    type: 'bar',
 				data: {
 						<?php
-						
-						if($row = mysqli_fetch_array($res)) {
+						if($row) {
+
 							echo "
-							labels: [".$row["Name1"].", ".$row["Name2"].",".$row["Name3"].",".$row["Name4"]."],
+							labels: ['".$row["Name1"]."', '".$row["Name2"]."','".$row["Name3"]."','".$row["Name4"]."'],
 							datasets: [{
-							label: '',
-							data: [".$row["Votes1"].",". $row["Votes2"].",". $row["Votes3"].",". $row["Votes4"]."],
+								label: '',
+								data: [".$row["Votes1"].",". $row["Votes2"].",". $row["Votes3"].",". $row["Votes4"]."],
+							
 							";
 						}						
 						?>
@@ -75,7 +77,7 @@
 							'rgba(0, 255, 0, 0.2)',
 							'rgba(255, 255, 0, 0.2)',
 							'rgba(255, 0, 0, 0.2)'
-						],
+						]
 
 					}]
 				},				
@@ -86,7 +88,8 @@
 				                beginAtZero:true
 				            }
 				        }]
-				    }
+				    },
+
 				}
 			});
 			

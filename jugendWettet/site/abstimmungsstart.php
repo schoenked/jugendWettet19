@@ -42,9 +42,9 @@
 ?>
 		</div>
 		<div id="clockwindow" class="w3-right w3-padding-32">
-		<button onclick="start()" class="w3-button w3-btn w3-card w3-hover-white w3-border w3-text-green w3-border-green w3-round-xxlarge w3-padding-32">
-		⏵<br>
-		START
+		<button onclick="start()" class="w3-button w3-btn w3-card w3-hover-white w3-border w3-text-orange w3-border-orange w3-round-xxlarge w3-padding-32">
+		⬜<br>
+		in 30 s beenden
 		</button>
 
 		<script>
