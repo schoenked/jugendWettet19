@@ -1,4 +1,4 @@
-
+﻿
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -6,44 +6,91 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="css/w3.css">
 	<title>Jugend Spiel 2019, Abstimmungsergebnis</title>
-	<script src="lib/Chart.js" />
+	<script src="lib/Chart.js"></script>
 </head>
 <body class="w3-dark-grey">
 <header>
-	<a class="w3-button w3-left w3-border" href="index.php">zur�ck</a>
+	<a class="w3-button w3-left w3-border" href="index.php">zurück</a>
 </header>
 <div class="w3-center w3-display-middle">
 
 	<div class="w3-bar w3-white w3-round-xlarge w3-padding ">
 	<h1 class="w3-border-bottom w3-border-blue">Abstimmungsergebnis</h1>
 	
-	<canvasid="myChart" width="800" height="500"></canvas>
-	<script>
-		var ctx = document.getElementById("myChart");
-	    var myChart = new Chart(ctx, 
-			{
-				data: {
-					labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-					datasets: [{
-					}]
-				}
-			});
+	<canvas id="myChart" width="800" height="400"></canvas>
 
-	</script>
+	
 <?php
 
 	require_once 'connectDB.php';
 	$conn = getConnection();
 	$spielID = $conn->real_escape_string($_GET["spielID"]);
-	$sql = "SELECT Name, Name1, Name2, Name3, Name4
+	$sql = "SELECT Name, 
+				Name1, 
+				(SELECT Count() 
+				 FROM Abstimmung 
+				 WHERE SpielID='$spielID' 
+					AND Auswahl=1) AS Votes1,
+				Name2, 
+				(SELECT Count() 
+				 FROM Abstimmung 
+				 WHERE SpielID='$spielID' 
+					AND Auswahl=1) AS Votes2,
+				Name3, 
+				(SELECT Count() 
+				 FROM Abstimmung 
+				 WHERE SpielID='$spielID' 
+					AND Auswahl=1) AS Votes3,
+				Name4,
+				(SELECT Count() 
+				 FROM Abstimmung 
+				 WHERE SpielID='$spielID' 
+					AND Auswahl=1) AS Votes4
 			FROM Spiel
 			WHERE Id='$spielID'";
 	$res = queryWithConnection($conn,$sql);
 	
-	while($row = mysqli_fetch_array($res)) {
-	}
+	
 ?>
 
+	<script>
+		var ctx = document.getElementById("myChart");
+	    var myChart = new Chart(ctx, 
+			{
+			    type: 'bar',
+				data: {
+						<?php
+						
+						if($row = mysqli_fetch_array($res)) {
+							echo "
+							labels: [".$row["Name1"].", ".$row["Name2"].",".$row["Name3"].",".$row["Name4"]."],
+							datasets: [{
+							label: '',
+							data: [".$row["Votes1"].",". $row["Votes2"].",". $row["Votes3"].",". $row["Votes4"]."],
+							";
+						}						
+						?>
+						backgroundColor: [
+							'rgba(0, 0, 255, 0.2)',
+							'rgba(0, 255, 0, 0.2)',
+							'rgba(255, 255, 0, 0.2)',
+							'rgba(255, 0, 0, 0.2)'
+						],
+
+					}]
+				},				
+				options: {
+				    scales: {
+				        yAxes: [{
+				            ticks: {
+				                beginAtZero:true
+				            }
+				        }]
+				    }
+				}
+			});
+			
+	</script>
 	</div>
 <footer>
 </footer>
